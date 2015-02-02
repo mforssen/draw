@@ -1,0 +1,59 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+.header {
+	background-color: #c8e1c8;
+	width: 100%;
+	height: 70px;
+}
+
+.button {
+	height: 50px;
+	width: 50px;
+	padding: 10px;
+	display: inline;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: pointer;
+}
+
+.mainButtons {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline-block;
+}
+
+.icon {
+	fill: #789178;
+}
+
+.saveButton {
+	float: left;
+}
+
+.deleteButton {
+	float: right;
+}
+
+.saveButton .icon {
+	fill: #2d962d;
+}
+
+.deleteButton .icon {
+	fill: #913232;
+}
+
+.button:hover .icon {
+	fill: #2d4b2d;
+}
+
+.saveButton:hover .icon {
+	fill:green;
+}
+
+.deleteButton:hover .icon {
+	fill:red;
+}
+
