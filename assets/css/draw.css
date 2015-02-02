@@ -57,3 +57,8 @@ body {
 	fill:red;
 }
 
+.checkbox {
+	height: 90px;
+	display: inline-block;
+}
+
