@@ -1,13 +1,68 @@
-var PENCIL = 0;
-var THICKBRUSH = 1;
-var VARIABLEBRUSH = 2;
+var PENCIL = "PENCIL";
+var THICKBRUSH = "THICKBRUSH";
+var VARIABLEBRUSH = "VARIABLEBRUSH";
 
 var path;
 var currentStyle = PENCIL;
 var stroke = 1;
-var color = "black"
+var color = '#000000';
 var lastPoint;
 var strokeEnds = 6;
+
+var pencilButton = document.getElementById("pencilButton");
+pencilButton.onclick = function(){ selectButton("#pencilButton") };
+var wideBrushButton = document.getElementById("wideBrushButton");
+wideBrushButton.onclick = function(){ selectButton("#wideBrushButton") };
+var thinBrushButton = document.getElementById("thinBrushButton");
+thinBrushButton.onclick = function(){ selectButton("#thinBrushButton") };
+
+
+$('.picker').colpick({
+	layout:'hex',
+	onChange:function(hsb,hex,rgb,el,bySetColor) {
+		updateColor(hex);
+	}
+});
+
+function updateColor(hex) {
+	var colorButton = document.getElementById("colorButton");
+	$(".icon", colorButton).attr('style', "fill:#" + hex);
+	color = "#" + hex;
+}
+
+function selectButton(button) {
+	deselectAll();
+	$svg = $(button);
+	$(".icon", $svg).attr('style', "fill:" + "black");
+	switch(button) {
+		case "#pencilButton":
+			currentStyle = PENCIL;
+			tool.fixedDistance = 0;
+			tool.minDistance = 0;
+			tool.maxDistance = 0;
+			break;
+		case "#wideBrushButton":
+			currentStyle = THICKBRUSH;
+			tool.fixedDistance = 30;
+			tool.minDistance = 30;
+			tool.maxDistance = 30;
+			break;
+		case "#thinBrushButton":
+			currentStyle = VARIABLEBRUSH;
+			tool.fixedDistance = 0;
+			tool.minDistance = 10;
+			tool.maxDistance = 45;
+			break;
+		default:
+			currentStyle: PENCIL;
+	}
+}
+
+function deselectAll() {
+	$(".icon", pencilButton).attr('style', "fill: #789178");
+	$(".icon", wideBrushButton).attr('style', "fill: #789178");
+	$(".icon", thinBrushButton).attr('style', "fill: #789178");
+}
 
 // tool.fixedDistance = 30;
 
@@ -21,6 +76,18 @@ function onMouseDown(event) {
 
 	if (currentStyle == THICKBRUSH) {
 		path.fillColor = color;
+		tool.fixedDistance = stroke * 10;
+		tool.minDistance = stroke * 10;
+		tool.maxDistance = stroke * 10;
+	}
+
+	if (currentStyle == VARIABLEBRUSH) {
+		path.fillColor = color;
+		tool.fixedDistance = 0;
+		tool.minDistance = 10;
+		tool.maxDistance = stroke * 15;
+		path.add(event.point);
+
 	}
 }
 
@@ -44,9 +111,20 @@ function onMouseDrag(event) {
 			path.insert(0, bottom);
 		}
 		
-
 		path.smooth();
 		lastPoint = event.middlePoint;
+	}
+
+	if (currentStyle == VARIABLEBRUSH) {
+		var step = event.delta / 2;
+		step.angle += 90;
+		
+		var top = event.middlePoint + step;
+		var bottom = event.middlePoint - step;
+		
+		path.add(top);
+		path.insert(0, bottom);
+		path.smooth();
 	}
 }
 
@@ -58,6 +136,12 @@ function onMouseUp(event) {
 		path.closed = true;
 		path.smooth();
 	}
+
+	if (currentStyle == VARIABLEBRUSH) {
+		path.add(event.point);
+		path.closed = true;
+		path.smooth();
+	}
 }
 
 function onKeyDown(event) {
@@ -66,7 +150,8 @@ function onKeyDown(event) {
 	}
 
 	if (Key.isDown('[')) {
-		stroke--;
+		if (stroke > 1)
+			stroke--;
 	}
 }
 
@@ -85,3 +170,6 @@ function addStrokes(point, delta) {
 		path.insert(0, strokePoint);
 	}
 }
+
+selectButton("#pencilButton");
+updateColor(color);

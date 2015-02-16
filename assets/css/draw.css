@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .header {
@@ -45,9 +45,13 @@ body {
 	fill: #913232;
 }
 
-.button:hover .icon {
-	fill: #2d4b2d;
+.colorButton .icon {
+	fill:black;
 }
+
+/*.button:hover .icon {
+	fill: #2d4b2d;
+}*/
 
 .saveButton:hover .icon {
 	fill:green;
@@ -62,3 +66,14 @@ body {
 	display: inline-block;
 }
 
+.pencilButton:select .icon {
+	fill:black;
+}
+
+.color {
+	/*display:none;*/
+}
+
+.picker {
+	display: inline-block;
+}
