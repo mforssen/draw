@@ -5,6 +5,7 @@ var VARIABLEBRUSH = "VARIABLEBRUSH";
 var path;
 var currentStyle = PENCIL;
 var stroke = 1;
+var opacity = 100;
 var color = '#000000';
 var lastPoint;
 var strokeEnds = 6;
@@ -89,6 +90,8 @@ function onMouseDown(event) {
 		path.add(event.point);
 
 	}
+
+	path.opacity = opacity/100;
 }
 
 function onMouseDrag(event) {
@@ -152,6 +155,18 @@ function onKeyDown(event) {
 	if (Key.isDown('[')) {
 		if (stroke > 1)
 			stroke--;
+	}
+
+	if (Key.isDown('}')) {
+		if (opacity < 100) {
+			opacity++;
+		}
+	}
+
+	if (Key.isDown('{')) {
+		if (opacity > 0) {
+			opacity--;
+		}
 	}
 }
 
