@@ -17,6 +17,10 @@ wideBrushButton.onclick = function(){ selectButton("#wideBrushButton") };
 var thinBrushButton = document.getElementById("thinBrushButton");
 thinBrushButton.onclick = function(){ selectButton("#thinBrushButton") };
 
+var saveButton = document.getElementById("saveButton");
+saveButton.onclick = function(){ downloadAsSVG(); };
+var deleteButton = document.getElementById("deleteButton");
+deleteButton.onclick = function(){ window.location.reload() };
 
 $('.picker').colpick({
 	layout:'hex',
@@ -184,6 +188,17 @@ function addStrokes(point, delta) {
 		strokePoint += offset;
 		path.insert(0, strokePoint);
 	}
+}
+
+function downloadAsSVG(fileName) {
+
+	if(!fileName) {
+	   fileName = "drawing.svg"
+	}
+
+	var svg = paper.project.exportSVG({asString: true});
+	var blob = new Blob([svg], {type: "image/svg+xml;charset=utf-8"});
+	saveAs(blob, fileName);
 }
 
 selectButton("#pencilButton");
