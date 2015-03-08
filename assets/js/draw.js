@@ -9,7 +9,9 @@ var opacity = 100;
 var color = '#000000';
 var lastPoint;
 var strokeEnds = 6;
+var currentSlider = "none";
 
+// Brush buttons
 var pencilButton = document.getElementById("pencilButton");
 pencilButton.onclick = function(){ selectButton("#pencilButton") };
 var wideBrushButton = document.getElementById("wideBrushButton");
@@ -17,10 +19,25 @@ wideBrushButton.onclick = function(){ selectButton("#wideBrushButton") };
 var thinBrushButton = document.getElementById("thinBrushButton");
 thinBrushButton.onclick = function(){ selectButton("#thinBrushButton") };
 
+// Save and delete buttons
 var saveButton = document.getElementById("saveButton");
 saveButton.onclick = function(){ downloadAsSVG(); };
 var deleteButton = document.getElementById("deleteButton");
 deleteButton.onclick = function(){ window.location.reload() };
+
+// Size and opacity display
+var sizeField = document.getElementById("size");
+var opacityField = document.getElementById("opacity");
+sizeField.innerHTML = stroke;
+opacityField.innerHTML = opacity;
+
+// Size and opacity sliders
+var sizeSlider = document.getElementById("weightSlider");
+var opacitySlider = document.getElementById("opacitySlider");
+sizeSlider.value = stroke;
+opacitySlider.value = opacity;
+sizeSlider.oninput = function(){ setStroke(sizeSlider.value); };
+opacitySlider.oninput = function(){ setOpacity(opacitySlider.value); };
 
 $('.picker').colpick({
 	layout:'hex',
@@ -153,25 +170,40 @@ function onMouseUp(event) {
 
 function onKeyDown(event) {
 	if (Key.isDown(']')) {
-		stroke++;
+		setStroke(stroke + 1);
 	}
 
 	if (Key.isDown('[')) {
-		if (stroke > 1)
-			stroke--;
+		setStroke(stroke - 1);
 	}
 
 	if (Key.isDown('}')) {
-		if (opacity < 100) {
-			opacity++;
-		}
+		setOpacity(opacity + 1);
 	}
 
 	if (Key.isDown('{')) {
-		if (opacity > 0) {
-			opacity--;
-		}
+		setOpacity(opacity - 1);
 	}
+}
+
+function setStroke(value) {
+	if ((value > 0) && (value < 101)) {
+		stroke = value;
+		sizeField.innerHTML = stroke;
+		sizeSlider.value = stroke;
+	}
+
+	return stroke;
+}
+
+function setOpacity(value) {
+	if ((value > 0) && (value < 101)) {
+		opacity = value;
+		opacityField.innerHTML = opacity;
+		opacitySlider.value = opacity;
+	}
+
+	return opacity;
 }
 
 function addStrokes(point, delta) {
@@ -199,6 +231,20 @@ function downloadAsSVG(fileName) {
 	var svg = paper.project.exportSVG({asString: true});
 	var blob = new Blob([svg], {type: "image/svg+xml;charset=utf-8"});
 	saveAs(blob, fileName);
+}
+
+function get_nextsibling(n) {
+	x=n.nextSibling;
+	
+	while (x.nodeType!=1) {
+		x=x.nextSibling;
+	}
+
+	return x;
+}
+
+function showValue(self) {
+	get_nextsibling(self).innerHTML=self.value;
 }
 
 selectButton("#pencilButton");

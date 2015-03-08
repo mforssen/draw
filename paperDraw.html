@@ -17,7 +17,7 @@
 		<svg class="button saveButton" id="saveButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="file-download"><path class="icon" d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"></path></g></svg>
 
 		<div class="mainButtons">
-
+		<div class="buttonDiv">
 		<svg class="button pencilButton" id="pencilButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
 		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 			<g id="Capa_2">
@@ -44,7 +44,14 @@
 				</g>
 			</g>
 			</svg>
+			<!-- <form > -->
+				<!-- <div class="sliderDiv">
+				<input class="slider" type="range" name="size" min="1" max="10">
+				</div> -->
+			<!-- </form> -->
+		<!-- </div> -->
 
+		<!-- <div class="buttonDiv"> -->
 		<svg class="button wideBrushButton" id="wideBrushButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
 		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 		<g id="Capa_2">
@@ -69,6 +76,12 @@
 			</g>
 		</g>
 		</svg>
+		<!-- <div class="sliderDiv">
+		<input class="slider" type="range" name="size" min="1" max="10">
+		</div> -->
+		<!-- </div> -->
+
+		<!-- <div class="buttonDiv"> -->
 
 		<svg class="button thinBrushButton" id="thinBrushButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
 		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -94,6 +107,11 @@
 			</g>
 		</g>
 		</svg>
+		<!-- <div class="sliderDiv">
+		<input id="weight" class="slider" type="range" name="size" min="1" max="10"> <text>
+		</div> -->
+		</div>
+
 
 		<div class="picker">
 		<svg class="button colorButton" id="colorButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
@@ -120,8 +138,24 @@
 		</g>
 		</svg>
 		</div>
-		<!-- <input class="color" value="66ff00"> -->
-		<!-- <button id="picker">Show Color Picker</button> -->
+
+		<div class="rangeDiv">
+			<div class="rangeLabel">Brush Size:</div>
+			<div id="size" class="rangeNumber"></div>
+			<div class="sliderDiv hidden">
+				<input id="weightSlider" class="slider" type="range" name="size" min="1" max="100"> <text>
+			</div>
+		</div>
+
+		<div class="rangeDiv">
+			<div class="rangeLabel">Opacity:</div>
+			<div id="opacity" class="rangeNumber"></div>
+			<div class="sliderDiv hidden">
+				<input id="opacitySlider" class="slider" type="range" name="opacity" min="1" max="100"> <text>
+			</div>
+		</div>
+
+
 		</div>
 
 		<svg class="button deleteButton" id="deleteButton" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

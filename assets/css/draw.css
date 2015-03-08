@@ -13,7 +13,7 @@ body {
 	height: 50px;
 	width: 50px;
 	padding: 10px;
-	display: inline;
+	display: inline-block;
 	margin-left: auto;
 	margin-right: auto;
 	cursor: pointer;
@@ -49,10 +49,6 @@ body {
 	fill:black;
 }
 
-/*.button:hover .icon {
-	fill: #2d4b2d;
-}*/
-
 .saveButton:hover .icon {
 	fill:green;
 }
@@ -70,10 +66,45 @@ body {
 	fill:black;
 }
 
-.color {
-	/*display:none;*/
+.buttonDiv {
+	display: inline-block;
+	position: relative;
+}
+
+.rangeDiv:hover .sliderDiv {
+	display: block;
+
+}
+
+.sliderDiv {
+	/*display: none;*/
+	position: absolute;
+	background-color: white;
+	border: 3px solid #2d4b2d;
+	padding-top: 3px;
+	left: -50px;
 }
 
 .picker {
 	display: inline-block;
+}
+
+.rangeDiv {
+	padding: 20px;
+	position: relative;
+	top: -20px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rangeNumber {
+	font-size: 150%;
+}
+
+.rangeLabel {
+	font-size: 75%;
+}
+
+.hidden {
+	display: none;
 }
