@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script src="assets/js/colpick.js" type="text/javascript"></script>
+<script src="assets/js/FileSaver.js" type="text/javascript"></script>
+<link rel="stylesheet" href="assets/css/colpick.css" type="text/css"/>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="assets/js/paper.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/draw.css"/>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas" src="assets/js/draw.js"></script>
+</head>
+<body>
+	<div class="header"> 
+		<svg class="button saveButton" id="saveButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="file-download"><path class="icon" d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"></path></g></svg>
+
+		<div class="mainButtons">
+		<div class="buttonDiv">
+		<svg class="button pencilButton" id="pencilButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
+		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+			<g id="Capa_2">
+			</g>
+			<g id="Artwork">
+			</g>
+			<g id="Layer_3">
+			</g>
+			<g id="Layer_4">
+			</g>
+			<g id="Layer_5">
+				<g>
+					<path class="icon" d="M237.423,81.192l133.065,61.978c1.83,0.853,4.024,0.052,4.877-1.777l12.333-26.481c0.853-1.828,0.052-4.023-1.776-4.875
+						L252.856,48.059c-1.83-0.852-4.025-0.052-4.877,1.778l-12.333,26.479C234.793,78.146,235.594,80.341,237.423,81.192z"/>
+					<path class="icon" d="M260.334,388.802l104.689-224.77c0.854-1.83,0.053-4.024-1.776-4.877L230.182,97.179c-1.83-0.853-4.025-0.053-4.877,1.777
+						l-104.689,224.77c-0.854,1.83-1.182,4.936-0.729,6.904l26.386,115.203c0.449,1.967,3.289,2.823,5.085,1.902l104.163-53.932
+						C257.315,392.882,259.483,390.632,260.334,388.802z M221.521,388.731c-1.767,0.977-4.681,2.529-6.478,3.449
+						c0,0-29.139,14.943-39.939,20.483c-5.418,2.778-16.37-1.618-17.73-7.552c-2.754-12.029-10.201-44.543-10.201-44.543
+						c-0.451-1.967-1.139-5.197-1.528-7.178c0,0-1.517-7.715-1.218-8.357c0.301-0.645,7.176,2.129,7.176,2.129
+						c1.872,0.756,4.898,2.07,6.729,2.922l57.557,26.809c1.829,0.852,4.785,2.324,6.567,3.271c0,0,6.547,3.478,6.247,4.122
+						S221.521,388.731,221.521,388.731z"/>
+					<path class="icon" d="M385.317,447.396H198.614c-3.85,0-7,3.149-7,7v2.887c0,3.85,3.15,7,7,7h186.703c3.851,0,7-3.15,7-7v-2.887
+						C392.317,450.545,389.167,447.396,385.317,447.396z"/>
+				</g>
+			</g>
+			</svg>
+			<!-- <form > -->
+				<!-- <div class="sliderDiv">
+				<input class="slider" type="range" name="size" min="1" max="10">
+				</div> -->
+			<!-- </form> -->
+		<!-- </div> -->
+
+		<!-- <div class="buttonDiv"> -->
+		<svg class="button wideBrushButton" id="wideBrushButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
+		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+		<g id="Capa_2">
+		</g>
+		<g id="Artwork">
+		</g>
+		<g id="Layer_3">
+		</g>
+		<g id="Layer_4">
+		</g>
+		<g id="Layer_5">
+			<g>
+				<path class="icon" d="M126.479,325.274c-2.75,0-5,2.25-5,5v123.82c0,2.75,2.25,5,5,5h111.053c2.75,0,5.227-2.238,5.503-4.975l3.032-40.92
+					c0.33-2.729,3.975-2.744,4.428-0.032l4.344,40.985c0.424,2.717,3.021,4.941,5.771,4.941h26.581c2.75,0,5.206-2.24,5.457-4.98
+					l4.792-64.237c0.311-2.731,3.944-2.75,4.408-0.038l7.467,64.311c0.404,2.719,2.986,4.945,5.736,4.945h13.797
+					c2.75,0,5.324-2.227,5.721-4.948l1.836-23.647c0.721-2.652,4.092-2.713,5.045-0.133l3.629,23.848
+					c0.599,2.684,3.338,4.881,6.088,4.881h34.355c2.75,0,5-2.25,5-5v-123.82c0-2.75-2.25-5-5-5H126.479z"/>
+				<path class="icon" d="M385.521,308.386c2.75,0,5-2.25,5-5v-52.938c0-2.75-2.25-5-5-5H126.479c-2.75,0-5,2.25-5,5v52.938c0,2.75,2.25,5,5,5
+					H385.521z"/>
+				<path class="icon" d="M287.311,52.905h-62.621c-5.922,0-10.768,4.846-10.768,10.77l8.775,154.117c0,5.922,4.846,10.768,10.769,10.768h45.068
+					c5.923,0,10.769-4.846,10.769-10.768l8.776-154.117C298.079,57.751,293.232,52.905,287.311,52.905z"/>
+			</g>
+		</g>
+		</svg>
+		<!-- <div class="sliderDiv">
+		<input class="slider" type="range" name="size" min="1" max="10">
+		</div> -->
+		<!-- </div> -->
+
+		<!-- <div class="buttonDiv"> -->
+
+		<svg class="button thinBrushButton" id="thinBrushButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
+		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+		<g id="Capa_2">
+		</g>
+		<g id="Artwork">
+		</g>
+		<g id="Layer_3">
+		</g>
+		<g id="Layer_4">
+		</g>
+		<g id="Layer_5">
+			<g>
+				<path class="icon" d="M265.162,232.456c-45.061-21.617-100.526,0.334-123.886,49.029c-34.3,71.5,42.761,99.834-20.174,163.534
+					c-35.124,35.552,145.265-5.858,183.353-85.254C327.814,311.07,310.223,254.072,265.162,232.456z"/>
+				<path class="icon" d="M391.826,98.985l-92.113-44.188c-3.52-1.688-7.376-0.029-8.568,3.688c0,0-20.056,60.925-27.049,84.287
+					c-1.768,5.902-3.498,9.161,1.848,11.724c16.004,7.675,51.77,24.84,69.734,33.455c4.662,2.236,6.799-1.559,9.932-6.291
+					c12.629-19.074,48.702-73.683,48.702-73.683C396.465,104.719,395.346,100.673,391.826,98.985z"/>
+				<path class="icon" d="M325.658,202.34c-15.836-7.594-48.77-23.401-64.605-30.995c-6.381-3.06-7.568,3.75-8.57,6.469
+					c-2.311,6.267-8.163,25.437-8.163,25.437c-1.192,3.717,0.991,7.22,4.854,7.785c0,0,14.877,2.175,25.26,7.155
+					c12.85,6.165,26.676,20.937,26.676,20.937c2.666,2.85,6.61,2.518,8.763-0.739c0,0,13.024-18.761,16.773-25.377
+					C328.021,210.582,331.373,205.08,325.658,202.34z"/>
+			</g>
+		</g>
+		</svg>
+		<!-- <div class="sliderDiv">
+		<input id="weight" class="slider" type="range" name="size" min="1" max="10"> <text>
+		</div> -->
+		</div>
+
+
+		<div class="picker">
+		<svg class="button colorButton" id="colorButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
+		 height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+		<g id="Capa_2">
+		</g>
+		<g id="Artwork">
+		</g>
+		<g id="Layer_3">
+		</g>
+		<g id="Layer_4">
+		</g>
+		<g id="Layer_5">
+			<path class="icon" d="M231.541,77.351C109.178,111.283,24.002,247.584,65.25,347.01c32.727,78.883,130.766,132.874,253.232,97.16
+				c123.996-36.16,152-155.937,136.571-179.969c-32.134-50.052-58.538,36.213-71.729-1.898c-11.482-33.172,42.21-112.112-3.93-159.386
+				C334.572,56.992,265.053,68.057,231.541,77.351z M81.769,293.652c-4.594-13.273,2.653-27.076,16.189-30.83
+				c13.535-3.753,28.232,3.964,32.827,17.237c4.594,13.273-2.654,27.076-16.189,30.83S86.363,306.926,81.769,293.652z
+				 M132.418,364.429c-4.595-13.273,2.653-27.076,16.188-30.83c13.535-3.753,28.232,3.964,32.827,17.237s-2.653,27.077-16.188,30.83
+				C151.709,385.42,137.013,377.702,132.418,364.429z M247.465,413.902c-13.536,3.754-28.232-3.964-32.827-17.237
+				s2.653-27.076,16.188-30.83c13.535-3.753,28.232,3.964,32.827,17.237S261,410.149,247.465,413.902z M353.078,374.889
+				c4.594,13.273-2.653,27.076-16.189,30.83c-13.535,3.753-28.232-3.964-32.826-17.237c-4.595-13.273,2.652-27.077,16.188-30.83
+				C333.786,353.897,348.483,361.615,353.078,374.889z M322.611,156.148c7.74,22.361-4.47,45.614-27.271,51.937
+				c-22.802,6.323-47.561-6.677-55.301-29.038c-7.74-22.36,4.47-45.613,27.271-51.937S314.872,133.788,322.611,156.148z"/>
+		</g>
+		</svg>
+		</div>
+
+		<div class="rangeDiv">
+			<div class="rangeLabel">Brush Size:</div>
+			<div id="size" class="rangeNumber"></div>
+			<div class="sliderDiv hidden">
+				<input id="weightSlider" class="slider" type="range" name="size" min="1" max="100"> <text>
+			</div>
+		</div>
+
+		<div class="rangeDiv">
+			<div class="rangeLabel">Opacity:</div>
+			<div id="opacity" class="rangeNumber"></div>
+			<div class="sliderDiv hidden">
+				<input id="opacitySlider" class="slider" type="range" name="opacity" min="1" max="100"> <text>
+			</div>
+		</div>
+
+
+		</div>
+
+		<svg class="button deleteButton" id="deleteButton" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 viewBox="0 0 65.765 83.202" style="enable-background:new 0 0 65.765 83.202;" xml:space="preserve">
+			<g>
+			<path class="icon" d="M60.093,9.797H48.984V2.578C48.984,1.125,47.812,0,46.359,0c-0.141,0-0.235,0.047-0.281,0.094
+				C46.031,0.047,45.937,0,45.89,0H19.781h-0.187h-0.188c-1.453,0-2.578,1.125-2.578,2.578v7.219H5.672C2.484,9.797,0,12.281,0,15.469
+				v4.125v5.156h4.922v52.827c0,3.188,2.437,5.625,5.625,5.625h44.671c3.188,0,5.672-2.437,5.672-5.625V24.75h4.875v-5.156v-4.125
+				C65.765,12.281,63.28,9.797,60.093,9.797z M21.984,5.156h21.797v4.641H21.984V5.156z M55.687,77.577
+				c0,0.329-0.141,0.469-0.469,0.469H10.547c-0.328,0-0.469-0.14-0.469-0.469V24.75h45.609V77.577z M60.562,19.594H5.203v-4.125
+				c0-0.328,0.141-0.516,0.469-0.516h54.421c0.328,0,0.469,0.188,0.469,0.516V19.594z"/>
+				<rect class="icon" x="42.328" y="30.797" width="5.203" height="42.655"/>
+				<rect class="icon" x="30.328" y="30.797" width="5.203" height="42.655"/>
+				<rect class="icon" x="18.328" y="30.797" width="5.203" height="42.655"/>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+			<g>
+			</g>
+		</svg>
+	</div>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
